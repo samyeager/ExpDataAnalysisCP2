@@ -26,12 +26,16 @@ plot3 <- function() {
     types <- levels(factor(totalEmissions$type))
     
     # open the file device and plot
-    png(file = "plot3.png")    
+    # png(file = "plot3.png")    
     with(totalEmissions, {
         g <- ggplot(totalEmissions, aes(year, Emissions, color = type))        
-        g + geom_path() + labs(x = "Year", y = "Total Emissions (tons)") + ggtitle("Total Emissions in Baltimore\n by type, 1999-2008")
+        g <- g + geom_path() + labs(x = "Year", y = "Total Emissions (tons)") 
+        g <- g + ggtitle("Total Emissions in Baltimore\n by type, 1999-2008")
+        g
     })
+    
+    ggsave(file = "plot3.png", scale = 0.5)
 
     # close the file device  
-    dev.off()
+    # dev.off()
 }
